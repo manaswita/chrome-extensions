@@ -9,9 +9,14 @@ function myAction(input) {
     var urlList = [];
     chrome.tabs.getAllInWindow(null, function(tabs){
         for (var i = 0; i < tabs.length; i++) {
-
-        if(tab[i].title.contains(input.value)){
+        if(tabs[i].title.includes(input.value)){
+            tabs[i].active = true;
             console.log(tabs[i]);
+            chrome.tabs.query({url: tabs[i].url}, function(tab) {
+            chrome.tabs.highlight({'tabs': tab[0].index}, function() {});
+        });
+      //  chrome.tabs.highlight({'tabs': tab.index}, function() {});
+
         }
          var singleObj = {};
          singleObj['title'] = tabs[i].title;
@@ -19,7 +24,6 @@ function myAction(input) {
 
          urlList.push(singleObj);
         }
-        console.log(urlList);
     });
 }
 
