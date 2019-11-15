@@ -37,8 +37,9 @@ function myAction(input) {
             url = urlList[i].url;
             index = urlList[i].index;
             console.log(index);
+            console.log(url);
             cell.onclick = function(){
-                chrome.tabs.query({url: url}, function(tab) {
+                chrome.tabs.query({index: index}, function(tab) {
                     console.log(tab);
                     chrome.tabs.highlight({'tabs': index}, function() {});
                 });
