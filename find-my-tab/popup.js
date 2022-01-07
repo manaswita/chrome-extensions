@@ -25,9 +25,14 @@ function myAction(input) {
         }
 
         var body = document.getElementsByTagName("body")[0];
+		var temp = document.getElementById('results');
+		if(null != temp ){
+			temp.remove();
+		}
 
           // creates a <table> element and a <tbody> element
           var tbl = document.createElement("table");
+		  tbl.id='results';
           var tblBody = document.createElement("tbody");
           var url, index;
 
